@@ -1,0 +1,12 @@
+# Secretos y configuración local
+.env
+profiles.yml
+*.publishsettings
+
+# Archivos generados
+target/
+dbt_packages/
+logs/
+
+# Power BI local
+*.pbiTemp
