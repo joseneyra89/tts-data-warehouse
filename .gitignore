@@ -2,6 +2,7 @@
 .env
 profiles.yml
 *.publishsettings
+.venv/
 
 # Archivos generados
 target/
