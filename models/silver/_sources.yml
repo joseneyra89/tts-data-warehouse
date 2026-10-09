@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: bronze
+    description: Réplica Delta de estado actual mantenida por ADF CDC nativo.
+    catalog: adb_tts_p3_dev_joseneyra
+    schema: bronze
+    tables:
+      - name: cliente
+      - name: vehiculo
+      - name: tecnico
+      - name: servicio
+      - name: repuesto
+      - name: ordenservicio
+      - name: detalleservicio
+      - name: consumorepuesto
+      - name: factura
+      - name: marcavehiculo
+      - name: modelovehiculo
+      - name: especialidad

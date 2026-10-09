@@ -1,0 +1,32 @@
+name: tts_dw
+version: 1.0.0
+config-version: 2
+
+profile: tts_dw
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+snapshot-paths: ["snapshots"]
+analysis-paths: ["analyses"]
+
+clean-targets:
+  - target
+  - dbt_packages
+
+models:
+  tts_dw:
+    +catalog: adb_tts_p3_dev_joseneyra
+    silver:
+      +schema: silver
+      +materialized: incremental
+      +incremental_strategy: merge
+      +file_format: delta
+      +on_schema_change: sync_all_columns
+    gold:
+      +schema: gold
+      +materialized: incremental
+      +incremental_strategy: merge
+      +file_format: delta
+      +on_schema_change: sync_all_columns

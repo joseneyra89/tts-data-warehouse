@@ -1,0 +1,58 @@
+version: 2
+
+models:
+  - name: stg_cliente
+    description: Clientes tipados y normalizados.
+    columns:
+      - name: cliente_id
+        tests: [not_null, unique]
+      - name: ruc
+        tests: [not_null, unique]
+  - name: stg_vehiculo
+    columns:
+      - name: vehiculo_id
+        tests: [not_null, unique]
+      - name: cliente_id
+        tests: [not_null]
+  - name: stg_tecnico
+    columns:
+      - name: tecnico_id
+        tests: [not_null, unique]
+  - name: stg_servicio
+    columns:
+      - name: servicio_id
+        tests: [not_null, unique]
+  - name: stg_repuesto
+    columns:
+      - name: repuesto_id
+        tests: [not_null, unique]
+  - name: stg_orden_servicio
+    columns:
+      - name: orden_id
+        tests: [not_null, unique]
+  - name: stg_detalle_servicio
+    columns:
+      - name: detalle_id
+        tests: [not_null, unique]
+  - name: stg_consumo_repuesto
+    columns:
+      - name: consumo_id
+        tests: [not_null, unique]
+  - name: stg_factura
+    columns:
+      - name: factura_id
+        tests: [not_null, unique]
+      - name: orden_id
+        tests: [not_null, unique]
+  - name: stg_marca_vehiculo
+    columns:
+      - name: marca_id
+        tests: [not_null, unique]
+  - name: stg_modelo_vehiculo
+    columns:
+      - name: modelo_id
+        tests: [not_null, unique]
+  - name: stg_especialidad
+    columns:
+      - name: especialidad_id
+        tests: [not_null, unique]
