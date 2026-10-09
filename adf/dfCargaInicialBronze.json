@@ -1,0 +1,51 @@
+{
+  "name": "dfCargaInicialCliente",
+  "properties": {
+    "type": "MappingDataFlow",
+    "typeProperties": {
+      "sources": [
+        { "linkedService": { "referenceName": "ls_azure_sql_tts_oltp", "type": "LinkedServiceReference" }, "name": "srcCliente" },
+        { "linkedService": { "referenceName": "ls_azure_sql_tts_oltp", "type": "LinkedServiceReference" }, "name": "srcVehiculo" },
+        { "linkedService": { "referenceName": "ls_azure_sql_tts_oltp", "type": "LinkedServiceReference" }, "name": "srcTecnico" },
+        { "linkedService": { "referenceName": "ls_azure_sql_tts_oltp", "type": "LinkedServiceReference" }, "name": "srcServicio" },
+        { "linkedService": { "referenceName": "ls_azure_sql_tts_oltp", "type": "LinkedServiceReference" }, "name": "srcRepuesto" },
+        { "linkedService": { "referenceName": "ls_azure_sql_tts_oltp", "type": "LinkedServiceReference" }, "name": "srcOrdenServicio" },
+        { "linkedService": { "referenceName": "ls_azure_sql_tts_oltp", "type": "LinkedServiceReference" }, "name": "srcDetalleServicio" },
+        { "linkedService": { "referenceName": "ls_azure_sql_tts_oltp", "type": "LinkedServiceReference" }, "name": "srcConsumoRepuesto" },
+        { "linkedService": { "referenceName": "ls_azure_sql_tts_oltp", "type": "LinkedServiceReference" }, "name": "srcFactura" }
+      ],
+      "sinks": [
+        { "linkedService": { "referenceName": "ls_adls_gen2_tts", "type": "LinkedServiceReference" }, "name": "snkCliente" },
+        { "linkedService": { "referenceName": "ls_adls_gen2_tts", "type": "LinkedServiceReference" }, "name": "snkVehiculo" },
+        { "linkedService": { "referenceName": "ls_adls_gen2_tts", "type": "LinkedServiceReference" }, "name": "snkTecnico" },
+        { "linkedService": { "referenceName": "ls_adls_gen2_tts", "type": "LinkedServiceReference" }, "name": "snkServicio" },
+        { "linkedService": { "referenceName": "ls_adls_gen2_tts", "type": "LinkedServiceReference" }, "name": "snkRepuesto" },
+        { "linkedService": { "referenceName": "ls_adls_gen2_tts", "type": "LinkedServiceReference" }, "name": "snkOrdenServicio" },
+        { "linkedService": { "referenceName": "ls_adls_gen2_tts", "type": "LinkedServiceReference" }, "name": "snkDetalleServicio" },
+        { "linkedService": { "referenceName": "ls_adls_gen2_tts", "type": "LinkedServiceReference" }, "name": "snkConsumoRepuesto" },
+        { "linkedService": { "referenceName": "ls_adls_gen2_tts", "type": "LinkedServiceReference" }, "name": "snkFactura" }
+      ],
+      "transformations": [],
+      "scriptLines": [
+        "source(allowSchemaDrift: true, validateSchema: false, format: 'query', store: 'sqlserver', query: 'SELECT * FROM dbo.Cliente', isolationLevel: 'READ_COMMITTED') ~> srcCliente",
+        "source(allowSchemaDrift: true, validateSchema: false, format: 'query', store: 'sqlserver', query: 'SELECT * FROM dbo.Vehiculo', isolationLevel: 'READ_COMMITTED') ~> srcVehiculo",
+        "source(allowSchemaDrift: true, validateSchema: false, format: 'query', store: 'sqlserver', query: 'SELECT * FROM dbo.Tecnico', isolationLevel: 'READ_COMMITTED') ~> srcTecnico",
+        "source(allowSchemaDrift: true, validateSchema: false, format: 'query', store: 'sqlserver', query: 'SELECT * FROM dbo.Servicio', isolationLevel: 'READ_COMMITTED') ~> srcServicio",
+        "source(allowSchemaDrift: true, validateSchema: false, format: 'query', store: 'sqlserver', query: 'SELECT * FROM dbo.Repuesto', isolationLevel: 'READ_COMMITTED') ~> srcRepuesto",
+        "source(allowSchemaDrift: true, validateSchema: false, format: 'query', store: 'sqlserver', query: 'SELECT * FROM dbo.OrdenServicio', isolationLevel: 'READ_COMMITTED') ~> srcOrdenServicio",
+        "source(allowSchemaDrift: true, validateSchema: false, format: 'query', store: 'sqlserver', query: 'SELECT * FROM dbo.DetalleServicio', isolationLevel: 'READ_COMMITTED') ~> srcDetalleServicio",
+        "source(allowSchemaDrift: true, validateSchema: false, format: 'query', store: 'sqlserver', query: 'SELECT * FROM dbo.ConsumoRepuesto', isolationLevel: 'READ_COMMITTED') ~> srcConsumoRepuesto",
+        "source(allowSchemaDrift: true, validateSchema: false, format: 'query', store: 'sqlserver', query: 'SELECT * FROM dbo.Factura', isolationLevel: 'READ_COMMITTED') ~> srcFactura",
+        "srcCliente sink(allowSchemaDrift: true, validateSchema: false, format: 'delta', compressionType: 'snappy', compressionLevel: 'Fastest', fileSystem: 'bronze', folderPath: 'dbo.Cliente', overwrite: true, mergeSchema: false, autoCompact: false, optimizedWrite: false, vacuum: 0, deletable: false, insertable: true, updateable: false, upsertable: false, umask: 0022, preCommands: [], postCommands: [], skipDuplicateMapInputs: true, skipDuplicateMapOutputs: true) ~> snkCliente",
+        "srcVehiculo sink(allowSchemaDrift: true, validateSchema: false, format: 'delta', compressionType: 'snappy', compressionLevel: 'Fastest', fileSystem: 'bronze', folderPath: 'dbo.Vehiculo', overwrite: true, mergeSchema: false, autoCompact: false, optimizedWrite: false, vacuum: 0, deletable: false, insertable: true, updateable: false, upsertable: false, umask: 0022, preCommands: [], postCommands: [], skipDuplicateMapInputs: true, skipDuplicateMapOutputs: true) ~> snkVehiculo",
+        "srcTecnico sink(allowSchemaDrift: true, validateSchema: false, format: 'delta', compressionType: 'snappy', compressionLevel: 'Fastest', fileSystem: 'bronze', folderPath: 'dbo.Tecnico', overwrite: true, mergeSchema: false, autoCompact: false, optimizedWrite: false, vacuum: 0, deletable: false, insertable: true, updateable: false, upsertable: false, umask: 0022, preCommands: [], postCommands: [], skipDuplicateMapInputs: true, skipDuplicateMapOutputs: true) ~> snkTecnico",
+        "srcServicio sink(allowSchemaDrift: true, validateSchema: false, format: 'delta', compressionType: 'snappy', compressionLevel: 'Fastest', fileSystem: 'bronze', folderPath: 'dbo.Servicio', overwrite: true, mergeSchema: false, autoCompact: false, optimizedWrite: false, vacuum: 0, deletable: false, insertable: true, updateable: false, upsertable: false, umask: 0022, preCommands: [], postCommands: [], skipDuplicateMapInputs: true, skipDuplicateMapOutputs: true) ~> snkServicio",
+        "srcRepuesto sink(allowSchemaDrift: true, validateSchema: false, format: 'delta', compressionType: 'snappy', compressionLevel: 'Fastest', fileSystem: 'bronze', folderPath: 'dbo.Repuesto', overwrite: true, mergeSchema: false, autoCompact: false, optimizedWrite: false, vacuum: 0, deletable: false, insertable: true, updateable: false, upsertable: false, umask: 0022, preCommands: [], postCommands: [], skipDuplicateMapInputs: true, skipDuplicateMapOutputs: true) ~> snkRepuesto",
+        "srcOrdenServicio sink(allowSchemaDrift: true, validateSchema: false, format: 'delta', compressionType: 'snappy', compressionLevel: 'Fastest', fileSystem: 'bronze', folderPath: 'dbo.OrdenServicio', overwrite: true, mergeSchema: false, autoCompact: false, optimizedWrite: false, vacuum: 0, deletable: false, insertable: true, updateable: false, upsertable: false, umask: 0022, preCommands: [], postCommands: [], skipDuplicateMapInputs: true, skipDuplicateMapOutputs: true) ~> snkOrdenServicio",
+        "srcDetalleServicio sink(allowSchemaDrift: true, validateSchema: false, format: 'delta', compressionType: 'snappy', compressionLevel: 'Fastest', fileSystem: 'bronze', folderPath: 'dbo.DetalleServicio', overwrite: true, mergeSchema: false, autoCompact: false, optimizedWrite: false, vacuum: 0, deletable: false, insertable: true, updateable: false, upsertable: false, umask: 0022, preCommands: [], postCommands: [], skipDuplicateMapInputs: true, skipDuplicateMapOutputs: true) ~> snkDetalleServicio",
+        "srcConsumoRepuesto sink(allowSchemaDrift: true, validateSchema: false, format: 'delta', compressionType: 'snappy', compressionLevel: 'Fastest', fileSystem: 'bronze', folderPath: 'dbo.ConsumoRepuesto', overwrite: true, mergeSchema: false, autoCompact: false, optimizedWrite: false, vacuum: 0, deletable: false, insertable: true, updateable: false, upsertable: false, umask: 0022, preCommands: [], postCommands: [], skipDuplicateMapInputs: true, skipDuplicateMapOutputs: true) ~> snkConsumoRepuesto",
+        "srcFactura sink(allowSchemaDrift: true, validateSchema: false, format: 'delta', compressionType: 'snappy', compressionLevel: 'Fastest', fileSystem: 'bronze', folderPath: 'dbo.Factura', overwrite: true, mergeSchema: false, autoCompact: false, optimizedWrite: false, vacuum: 0, deletable: false, insertable: true, updateable: false, upsertable: false, umask: 0022, preCommands: [], postCommands: [], skipDuplicateMapInputs: true, skipDuplicateMapOutputs: true) ~> snkFactura"
+      ]
+    }
+  }
+}

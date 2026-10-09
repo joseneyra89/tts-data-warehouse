@@ -1,0 +1,63 @@
+{
+  "name": "dfCargaInicialCatalogos",
+  "properties": {
+    "type": "MappingDataFlow",
+    "typeProperties": {
+      "sources": [
+        {
+          "linkedService": {
+            "referenceName": "ls_azure_sql_tts_oltp",
+            "type": "LinkedServiceReference"
+          },
+          "name": "srcMarcaVehiculo"
+        },
+        {
+          "linkedService": {
+            "referenceName": "ls_azure_sql_tts_oltp",
+            "type": "LinkedServiceReference"
+          },
+          "name": "srcModeloVehiculo"
+        },
+        {
+          "linkedService": {
+            "referenceName": "ls_azure_sql_tts_oltp",
+            "type": "LinkedServiceReference"
+          },
+          "name": "srcEspecialidad"
+        }
+      ],
+      "sinks": [
+        {
+          "linkedService": {
+            "referenceName": "ls_adls_gen2_tts",
+            "type": "LinkedServiceReference"
+          },
+          "name": "snkMarcaVehiculo"
+        },
+        {
+          "linkedService": {
+            "referenceName": "ls_adls_gen2_tts",
+            "type": "LinkedServiceReference"
+          },
+          "name": "snkModeloVehiculo"
+        },
+        {
+          "linkedService": {
+            "referenceName": "ls_adls_gen2_tts",
+            "type": "LinkedServiceReference"
+          },
+          "name": "snkEspecialidad"
+        }
+      ],
+      "transformations": [],
+      "scriptLines": [
+        "source(allowSchemaDrift: true, validateSchema: false, format: 'query', store: 'sqlserver', query: 'SELECT * FROM dbo.MarcaVehiculo', isolationLevel: 'READ_COMMITTED') ~> srcMarcaVehiculo",
+        "source(allowSchemaDrift: true, validateSchema: false, format: 'query', store: 'sqlserver', query: 'SELECT * FROM dbo.ModeloVehiculo', isolationLevel: 'READ_COMMITTED') ~> srcModeloVehiculo",
+        "source(allowSchemaDrift: true, validateSchema: false, format: 'query', store: 'sqlserver', query: 'SELECT * FROM dbo.Especialidad', isolationLevel: 'READ_COMMITTED') ~> srcEspecialidad",
+        "srcMarcaVehiculo sink(allowSchemaDrift: true, validateSchema: false, format: 'delta', compressionType: 'snappy', compressionLevel: 'Fastest', fileSystem: 'bronze', folderPath: 'dbo.MarcaVehiculo', overwrite: true, mergeSchema: false, autoCompact: false, optimizedWrite: false, vacuum: 0, deletable: false, insertable: true, updateable: false, upsertable: false, umask: 0022, preCommands: [], postCommands: [], skipDuplicateMapInputs: true, skipDuplicateMapOutputs: true) ~> snkMarcaVehiculo",
+        "srcModeloVehiculo sink(allowSchemaDrift: true, validateSchema: false, format: 'delta', compressionType: 'snappy', compressionLevel: 'Fastest', fileSystem: 'bronze', folderPath: 'dbo.ModeloVehiculo', overwrite: true, mergeSchema: false, autoCompact: false, optimizedWrite: false, vacuum: 0, deletable: false, insertable: true, updateable: false, upsertable: false, umask: 0022, preCommands: [], postCommands: [], skipDuplicateMapInputs: true, skipDuplicateMapOutputs: true) ~> snkModeloVehiculo",
+        "srcEspecialidad sink(allowSchemaDrift: true, validateSchema: false, format: 'delta', compressionType: 'snappy', compressionLevel: 'Fastest', fileSystem: 'bronze', folderPath: 'dbo.Especialidad', overwrite: true, mergeSchema: false, autoCompact: false, optimizedWrite: false, vacuum: 0, deletable: false, insertable: true, updateable: false, upsertable: false, umask: 0022, preCommands: [], postCommands: [], skipDuplicateMapInputs: true, skipDuplicateMapOutputs: true) ~> snkEspecialidad"
+      ]
+    }
+  }
+}

@@ -1,0 +1,812 @@
+{
+  "name": "cdcOltpBronzeV2",
+  "properties": {
+    "SourceConnectionsInfo": [
+      {
+        "SourceEntities": [
+          {
+            "name": "dbo.Cliente",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "schemaName",
+                  "value": "dbo"
+                },
+                {
+                  "name": "tableName",
+                  "value": "Cliente"
+                },
+                {
+                  "name": "enableNativeCdc",
+                  "value": true
+                },
+                {
+                  "name": "netChanges",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "dbo.ConsumoRepuesto",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "schemaName",
+                  "value": "dbo"
+                },
+                {
+                  "name": "tableName",
+                  "value": "ConsumoRepuesto"
+                },
+                {
+                  "name": "enableNativeCdc",
+                  "value": true
+                },
+                {
+                  "name": "netChanges",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "dbo.DetalleServicio",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "schemaName",
+                  "value": "dbo"
+                },
+                {
+                  "name": "tableName",
+                  "value": "DetalleServicio"
+                },
+                {
+                  "name": "enableNativeCdc",
+                  "value": true
+                },
+                {
+                  "name": "netChanges",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "dbo.Factura",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "schemaName",
+                  "value": "dbo"
+                },
+                {
+                  "name": "tableName",
+                  "value": "Factura"
+                },
+                {
+                  "name": "enableNativeCdc",
+                  "value": true
+                },
+                {
+                  "name": "netChanges",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "dbo.OrdenServicio",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "schemaName",
+                  "value": "dbo"
+                },
+                {
+                  "name": "tableName",
+                  "value": "OrdenServicio"
+                },
+                {
+                  "name": "enableNativeCdc",
+                  "value": true
+                },
+                {
+                  "name": "netChanges",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "dbo.Repuesto",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "schemaName",
+                  "value": "dbo"
+                },
+                {
+                  "name": "tableName",
+                  "value": "Repuesto"
+                },
+                {
+                  "name": "enableNativeCdc",
+                  "value": true
+                },
+                {
+                  "name": "netChanges",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "dbo.Servicio",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "schemaName",
+                  "value": "dbo"
+                },
+                {
+                  "name": "tableName",
+                  "value": "Servicio"
+                },
+                {
+                  "name": "enableNativeCdc",
+                  "value": true
+                },
+                {
+                  "name": "netChanges",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "dbo.Tecnico",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "schemaName",
+                  "value": "dbo"
+                },
+                {
+                  "name": "tableName",
+                  "value": "Tecnico"
+                },
+                {
+                  "name": "enableNativeCdc",
+                  "value": true
+                },
+                {
+                  "name": "netChanges",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "dbo.Vehiculo",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "schemaName",
+                  "value": "dbo"
+                },
+                {
+                  "name": "tableName",
+                  "value": "Vehiculo"
+                },
+                {
+                  "name": "enableNativeCdc",
+                  "value": true
+                },
+                {
+                  "name": "netChanges",
+                  "value": true
+                }
+              ]
+            }
+          }
+        ],
+        "Connection": {
+          "linkedService": {
+            "referenceName": "ls_azure_sql_tts_oltp",
+            "type": "LinkedServiceReference"
+          },
+          "linkedServiceType": "AzureSqlDatabase",
+          "type": "linkedservicetype",
+          "isInlineDataset": true,
+          "commonDslConnectorProperties": [
+            {
+              "name": "allowSchemaDrift",
+              "value": true
+            },
+            {
+              "name": "inferDriftedColumnTypes",
+              "value": true
+            },
+            {
+              "name": "format",
+              "value": "table"
+            },
+            {
+              "name": "store",
+              "value": "sqlserver"
+            },
+            {
+              "name": "skipInitialLoad",
+              "value": true
+            }
+          ]
+        }
+      }
+    ],
+    "TargetConnectionsInfo": [
+      {
+        "TargetEntities": [
+          {
+            "name": "bronze/dbo.Cliente",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "container",
+                  "value": "bronze"
+                },
+                {
+                  "name": "fileSystem",
+                  "value": "bronze"
+                },
+                {
+                  "name": "folderPath",
+                  "value": "dbo.Cliente"
+                },
+                {
+                  "name": "keys",
+                  "value": [
+                    "ClienteID"
+                  ]
+                },
+                {
+                  "name": "deletable",
+                  "value": true
+                },
+                {
+                  "name": "updateable",
+                  "value": true
+                },
+                {
+                  "name": "upsertable",
+                  "value": true
+                },
+                {
+                  "name": "defaultToUpsert",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "bronze/dbo.ConsumoRepuesto",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "container",
+                  "value": "bronze"
+                },
+                {
+                  "name": "fileSystem",
+                  "value": "bronze"
+                },
+                {
+                  "name": "folderPath",
+                  "value": "dbo.ConsumoRepuesto"
+                },
+                {
+                  "name": "keys",
+                  "value": [
+                    "ConsumoID"
+                  ]
+                },
+                {
+                  "name": "deletable",
+                  "value": true
+                },
+                {
+                  "name": "updateable",
+                  "value": true
+                },
+                {
+                  "name": "upsertable",
+                  "value": true
+                },
+                {
+                  "name": "defaultToUpsert",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "bronze/dbo.DetalleServicio",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "container",
+                  "value": "bronze"
+                },
+                {
+                  "name": "fileSystem",
+                  "value": "bronze"
+                },
+                {
+                  "name": "folderPath",
+                  "value": "dbo.DetalleServicio"
+                },
+                {
+                  "name": "keys",
+                  "value": [
+                    "DetalleID"
+                  ]
+                },
+                {
+                  "name": "deletable",
+                  "value": true
+                },
+                {
+                  "name": "updateable",
+                  "value": true
+                },
+                {
+                  "name": "upsertable",
+                  "value": true
+                },
+                {
+                  "name": "defaultToUpsert",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "bronze/dbo.Factura",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "container",
+                  "value": "bronze"
+                },
+                {
+                  "name": "fileSystem",
+                  "value": "bronze"
+                },
+                {
+                  "name": "folderPath",
+                  "value": "dbo.Factura"
+                },
+                {
+                  "name": "keys",
+                  "value": [
+                    "FacturaID"
+                  ]
+                },
+                {
+                  "name": "deletable",
+                  "value": true
+                },
+                {
+                  "name": "updateable",
+                  "value": true
+                },
+                {
+                  "name": "upsertable",
+                  "value": true
+                },
+                {
+                  "name": "defaultToUpsert",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "bronze/dbo.OrdenServicio",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "container",
+                  "value": "bronze"
+                },
+                {
+                  "name": "fileSystem",
+                  "value": "bronze"
+                },
+                {
+                  "name": "folderPath",
+                  "value": "dbo.OrdenServicio"
+                },
+                {
+                  "name": "keys",
+                  "value": [
+                    "OrdenID"
+                  ]
+                },
+                {
+                  "name": "deletable",
+                  "value": true
+                },
+                {
+                  "name": "updateable",
+                  "value": true
+                },
+                {
+                  "name": "upsertable",
+                  "value": true
+                },
+                {
+                  "name": "defaultToUpsert",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "bronze/dbo.Repuesto",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "container",
+                  "value": "bronze"
+                },
+                {
+                  "name": "fileSystem",
+                  "value": "bronze"
+                },
+                {
+                  "name": "folderPath",
+                  "value": "dbo.Repuesto"
+                },
+                {
+                  "name": "keys",
+                  "value": [
+                    "RepuestoID"
+                  ]
+                },
+                {
+                  "name": "deletable",
+                  "value": true
+                },
+                {
+                  "name": "updateable",
+                  "value": true
+                },
+                {
+                  "name": "upsertable",
+                  "value": true
+                },
+                {
+                  "name": "defaultToUpsert",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "bronze/dbo.Servicio",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "container",
+                  "value": "bronze"
+                },
+                {
+                  "name": "fileSystem",
+                  "value": "bronze"
+                },
+                {
+                  "name": "folderPath",
+                  "value": "dbo.Servicio"
+                },
+                {
+                  "name": "keys",
+                  "value": [
+                    "ServicioID"
+                  ]
+                },
+                {
+                  "name": "deletable",
+                  "value": true
+                },
+                {
+                  "name": "updateable",
+                  "value": true
+                },
+                {
+                  "name": "upsertable",
+                  "value": true
+                },
+                {
+                  "name": "defaultToUpsert",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "bronze/dbo.Tecnico",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "container",
+                  "value": "bronze"
+                },
+                {
+                  "name": "fileSystem",
+                  "value": "bronze"
+                },
+                {
+                  "name": "folderPath",
+                  "value": "dbo.Tecnico"
+                },
+                {
+                  "name": "keys",
+                  "value": [
+                    "TecnicoID"
+                  ]
+                },
+                {
+                  "name": "deletable",
+                  "value": true
+                },
+                {
+                  "name": "updateable",
+                  "value": true
+                },
+                {
+                  "name": "upsertable",
+                  "value": true
+                },
+                {
+                  "name": "defaultToUpsert",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "bronze/dbo.Vehiculo",
+            "properties": {
+              "schema": [],
+              "dslConnectorProperties": [
+                {
+                  "name": "container",
+                  "value": "bronze"
+                },
+                {
+                  "name": "fileSystem",
+                  "value": "bronze"
+                },
+                {
+                  "name": "folderPath",
+                  "value": "dbo.Vehiculo"
+                },
+                {
+                  "name": "keys",
+                  "value": [
+                    "VehiculoID"
+                  ]
+                },
+                {
+                  "name": "deletable",
+                  "value": true
+                },
+                {
+                  "name": "updateable",
+                  "value": true
+                },
+                {
+                  "name": "upsertable",
+                  "value": true
+                },
+                {
+                  "name": "defaultToUpsert",
+                  "value": true
+                }
+              ]
+            }
+          }
+        ],
+        "Connection": {
+          "linkedService": {
+            "referenceName": "ls_adls_gen2_tts",
+            "type": "LinkedServiceReference"
+          },
+          "linkedServiceType": "AzureBlobFS",
+          "type": "linkedservicetype",
+          "isInlineDataset": true,
+          "commonDslConnectorProperties": [
+            {
+              "name": "allowSchemaDrift",
+              "value": true
+            },
+            {
+              "name": "inferDriftedColumnTypes",
+              "value": true
+            },
+            {
+              "name": "format",
+              "value": "delta"
+            },
+            {
+              "name": "mergeSchema",
+              "value": true
+            },
+            {
+              "name": "autoCompact",
+              "value": true
+            },
+            {
+              "name": "optimizedWrite",
+              "value": true
+            },
+            {
+              "name": "deletable",
+              "value": false
+            },
+            {
+              "name": "insertable",
+              "value": true
+            },
+            {
+              "name": "updateable",
+              "value": false
+            },
+            {
+              "name": "upsertable",
+              "value": false
+            },
+            {
+              "name": "skipDuplicateMapInputs",
+              "value": true
+            },
+            {
+              "name": "skipDuplicateMapOutputs",
+              "value": true
+            }
+          ]
+        },
+        "DataMapperMappings": [
+          {
+            "targetEntityName": "bronze/dbo.Vehiculo",
+            "sourceEntityName": "dbo.Vehiculo",
+            "sourceConnectionReference": {
+              "connectionName": "ls_azure_sql_tts_oltp",
+              "type": "linkedservicetype"
+            },
+            "attributeMappingInfo": {
+              "attributeMappings": []
+            }
+          },
+          {
+            "targetEntityName": "bronze/dbo.Tecnico",
+            "sourceEntityName": "dbo.Tecnico",
+            "sourceConnectionReference": {
+              "connectionName": "ls_azure_sql_tts_oltp",
+              "type": "linkedservicetype"
+            },
+            "attributeMappingInfo": {
+              "attributeMappings": []
+            }
+          },
+          {
+            "targetEntityName": "bronze/dbo.Servicio",
+            "sourceEntityName": "dbo.Servicio",
+            "sourceConnectionReference": {
+              "connectionName": "ls_azure_sql_tts_oltp",
+              "type": "linkedservicetype"
+            },
+            "attributeMappingInfo": {
+              "attributeMappings": []
+            }
+          },
+          {
+            "targetEntityName": "bronze/dbo.Repuesto",
+            "sourceEntityName": "dbo.Repuesto",
+            "sourceConnectionReference": {
+              "connectionName": "ls_azure_sql_tts_oltp",
+              "type": "linkedservicetype"
+            },
+            "attributeMappingInfo": {
+              "attributeMappings": []
+            }
+          },
+          {
+            "targetEntityName": "bronze/dbo.OrdenServicio",
+            "sourceEntityName": "dbo.OrdenServicio",
+            "sourceConnectionReference": {
+              "connectionName": "ls_azure_sql_tts_oltp",
+              "type": "linkedservicetype"
+            },
+            "attributeMappingInfo": {
+              "attributeMappings": []
+            }
+          },
+          {
+            "targetEntityName": "bronze/dbo.Factura",
+            "sourceEntityName": "dbo.Factura",
+            "sourceConnectionReference": {
+              "connectionName": "ls_azure_sql_tts_oltp",
+              "type": "linkedservicetype"
+            },
+            "attributeMappingInfo": {
+              "attributeMappings": []
+            }
+          },
+          {
+            "targetEntityName": "bronze/dbo.DetalleServicio",
+            "sourceEntityName": "dbo.DetalleServicio",
+            "sourceConnectionReference": {
+              "connectionName": "ls_azure_sql_tts_oltp",
+              "type": "linkedservicetype"
+            },
+            "attributeMappingInfo": {
+              "attributeMappings": []
+            }
+          },
+          {
+            "targetEntityName": "bronze/dbo.ConsumoRepuesto",
+            "sourceEntityName": "dbo.ConsumoRepuesto",
+            "sourceConnectionReference": {
+              "connectionName": "ls_azure_sql_tts_oltp",
+              "type": "linkedservicetype"
+            },
+            "attributeMappingInfo": {
+              "attributeMappings": []
+            }
+          },
+          {
+            "targetEntityName": "bronze/dbo.Cliente",
+            "sourceEntityName": "dbo.Cliente",
+            "sourceConnectionReference": {
+              "connectionName": "ls_azure_sql_tts_oltp",
+              "type": "linkedservicetype"
+            },
+            "attributeMappingInfo": {
+              "attributeMappings": []
+            }
+          }
+        ],
+        "Relationships": []
+      }
+    ],
+    "Policy": {
+      "recurrence": {
+        "frequency": "Minute",
+        "interval": 15
+      },
+      "mode": "Microbatch"
+    },
+    "status": "Stopped",
+    "allowVNetOverride": false
+  }
+}
