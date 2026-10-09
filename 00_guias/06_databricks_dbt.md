@@ -33,6 +33,8 @@ Estado al 2026-10-09:
 - Las 12 tablas Delta de Bronze se registraron como tablas externas en `adb_tts_p3_dev_joseneyra.bronze` mediante `databricks/01_registrar_bronze.sql`.
 - El comando `SHOW TABLES` devolvió las 12 tablas y las 15 instrucciones SQL finalizaron correctamente.
 - `databricks/02_validar_bronze.sql` confirmó lectura de las 12 tablas y un total de 1,114,486 filas.
+- Primer run dbt Silver: 12 modelos incrementales creados con `merge`; 29 pruebas aprobadas, 0 advertencias de datos y 0 errores.
+- Gold preparado con seis dimensiones (`dim_fecha`, `dim_cliente`, `dim_vehiculo`, `dim_tecnico`, `dim_servicio`, `dim_repuesto`) y tres hechos (`fact_servicio`, `fact_consumo_repuesto`, `fact_factura`).
 
 ## 1. Aprovisionamiento
 

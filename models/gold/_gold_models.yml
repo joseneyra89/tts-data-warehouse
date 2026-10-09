@@ -1,0 +1,79 @@
+version: 2
+
+models:
+  - name: dim_cliente
+    description: Dimensión de clientes.
+    columns:
+      - name: cliente_key
+        tests: [not_null, unique]
+  - name: dim_vehiculo
+    description: Dimensión de vehículos enriquecida con modelo y marca.
+    columns:
+      - name: vehiculo_key
+        tests: [not_null, unique]
+      - name: cliente_key
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_cliente')
+                field: cliente_key
+  - name: dim_tecnico
+    description: Dimensión de técnicos enriquecida con especialidad.
+    columns:
+      - name: tecnico_key
+        tests: [not_null, unique]
+  - name: dim_servicio
+    description: Catálogo de servicios.
+    columns:
+      - name: servicio_key
+        tests: [not_null, unique]
+  - name: dim_repuesto
+    description: Catálogo de repuestos e inventario actual.
+    columns:
+      - name: repuesto_key
+        tests: [not_null, unique]
+  - name: dim_fecha
+    description: Calendario diario del periodo operativo.
+    columns:
+      - name: fecha_key
+        tests: [not_null, unique]
+  - name: fact_servicio
+    description: Hecho con grano de una línea de servicio por orden.
+    columns:
+      - name: detalle_servicio_key
+        tests: [not_null, unique]
+      - name: cliente_key
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_cliente')
+                field: cliente_key
+      - name: servicio_key
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_servicio')
+                field: servicio_key
+  - name: fact_consumo_repuesto
+    description: Hecho con grano de una línea de repuesto consumido por orden.
+    columns:
+      - name: consumo_repuesto_key
+        tests: [not_null, unique]
+      - name: repuesto_key
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_repuesto')
+                field: repuesto_key
+  - name: fact_factura
+    description: Hecho con grano de una factura por orden.
+    columns:
+      - name: factura_key
+        tests: [not_null, unique]
+      - name: cliente_key
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_cliente')
+                field: cliente_key
