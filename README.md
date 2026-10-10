@@ -29,4 +29,6 @@ Etapa actual: 6 - publicar Gold mediante Azure Synapse Analytics y conectarlo co
 
 Las cargas Silver/Gold usan `MERGE` para altas y modificaciones. Las operaciones `sync_silver_hard_deletes` y `sync_gold_hard_deletes` comparan las claves contra la capa anterior después de cada carga para propagar también las eliminaciones físicas.
 
+El flujo automatizado validado es `dbt_silver -> dbt_gold -> publish_synapse`. Synapse Serverless expone nueve vistas del esquema `gold` en la base `tts_dw`, con los mismos conteos que Databricks.
+
 Azure Cloud Shell se usa en modo efímero sin almacenamiento. El código reproducible se conserva en este repositorio y no contiene contraseñas.

@@ -38,6 +38,7 @@ Estado al 2026-10-09:
 - El Job `job_dbt_tts_medallion` ejecutó `dbt_silver -> dbt_gold` correctamente. Gold quedó validado con 21,846 filas de dimensiones y 893,700 filas de hechos.
 - Para mantener compatibilidad con Synapse Serverless, `databricks/03_publicar_gold_synapse.sql` genera una instantánea Parquet reemplazable bajo `gold/synapse`.
 - Las macros `sync_silver_hard_deletes` y `sync_gold_hard_deletes` eliminan de cada destino las claves que ya no existen en su capa de origen. Se ejecutan después de cada `dbt run` para completar la propagación de eliminaciones del CDC sin recrear tablas.
+- El Job definitivo `dbt_silver -> dbt_gold -> publish_synapse` finalizó correctamente con cuatro comandos en cada tarea dbt y la publicación Parquet automatizada. Las operaciones de eliminación y las pruebas se ejecutaron sin errores.
 
 ## 1. Aprovisionamiento
 
