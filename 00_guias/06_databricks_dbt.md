@@ -35,6 +35,8 @@ Estado al 2026-10-09:
 - `databricks/02_validar_bronze.sql` confirmó lectura de las 12 tablas y un total de 1,114,486 filas.
 - Primer run dbt Silver: 12 modelos incrementales creados con `merge`; 29 pruebas aprobadas, 0 advertencias de datos y 0 errores.
 - Gold preparado con seis dimensiones (`dim_fecha`, `dim_cliente`, `dim_vehiculo`, `dim_tecnico`, `dim_servicio`, `dim_repuesto`) y tres hechos (`fact_servicio`, `fact_consumo_repuesto`, `fact_factura`).
+- El Job `job_dbt_tts_medallion` ejecutó `dbt_silver -> dbt_gold` correctamente. Gold quedó validado con 21,846 filas de dimensiones y 893,700 filas de hechos.
+- Para mantener compatibilidad con Synapse Serverless, `databricks/03_publicar_gold_synapse.sql` genera una instantánea Parquet reemplazable bajo `gold/synapse`.
 
 ## 1. Aprovisionamiento
 
