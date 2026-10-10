@@ -27,4 +27,6 @@ La primera definición `cdcOltpBronze` quedó con un punto de control fuera de l
 
 Etapa actual: 6 - publicar Gold mediante Azure Synapse Analytics y conectarlo con Power BI. El Job `job_dbt_tts_medallion` ejecuta Silver y Gold en orden; ambas tareas finalizaron correctamente. Gold contiene seis dimensiones (21,846 filas) y tres hechos (893,700 filas). El workspace serverless `syn-tts-p3-dev-joseneyra` ya está creado y los scripts reproducibles para publicar Parquet y registrar las vistas están en `databricks/03_publicar_gold_synapse.sql` y `synapse/`.
 
+Las cargas Silver/Gold usan `MERGE` para altas y modificaciones. Las operaciones `sync_silver_hard_deletes` y `sync_gold_hard_deletes` comparan las claves contra la capa anterior después de cada carga para propagar también las eliminaciones físicas.
+
 Azure Cloud Shell se usa en modo efímero sin almacenamiento. El código reproducible se conserva en este repositorio y no contiene contraseñas.

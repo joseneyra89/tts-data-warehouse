@@ -37,6 +37,7 @@ Estado al 2026-10-09:
 - Gold preparado con seis dimensiones (`dim_fecha`, `dim_cliente`, `dim_vehiculo`, `dim_tecnico`, `dim_servicio`, `dim_repuesto`) y tres hechos (`fact_servicio`, `fact_consumo_repuesto`, `fact_factura`).
 - El Job `job_dbt_tts_medallion` ejecutó `dbt_silver -> dbt_gold` correctamente. Gold quedó validado con 21,846 filas de dimensiones y 893,700 filas de hechos.
 - Para mantener compatibilidad con Synapse Serverless, `databricks/03_publicar_gold_synapse.sql` genera una instantánea Parquet reemplazable bajo `gold/synapse`.
+- Las macros `sync_silver_hard_deletes` y `sync_gold_hard_deletes` eliminan de cada destino las claves que ya no existen en su capa de origen. Se ejecutan después de cada `dbt run` para completar la propagación de eliminaciones del CDC sin recrear tablas.
 
 ## 1. Aprovisionamiento
 
